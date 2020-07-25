@@ -16,7 +16,7 @@ config :auth, AuthWeb.Endpoint,
   secret_key_base: "QJcRbZ4Yh0PHM7zSMNbtm48vxvF/MAyLV7riCmwagjNXaifv7POE/gxkDOuTRTA0",
   render_errors: [view: AuthWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Auth.PubSub,
-  live_view: [signing_salt: "ISuqnXBk"]
+  live_view: [signing_salt: System.get_env("SIGNING_SALT") || "ISuqnXBk"]
 
 # Configures Elixir's Logger
 config :logger, :console,
