@@ -1,4 +1,6 @@
 defmodule AuthWeb.PageLive do
+  @moduledoc false
+
   use AuthWeb, :live_view
 
   @impl true
