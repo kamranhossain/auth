@@ -2,12 +2,14 @@ use Mix.Config
 
 # Configure your database
 config :auth, Auth.Repo,
-  username: "postgres",
-  password: "postgres",
-  database: "auth_dev",
+  adapter: Ecto.Adapters.Postgres,
   hostname: "localhost",
+  username: System.get_env("DB_USER") || "postgres",
+  password: System.get_env("DB_PASSWORD") || "",
+  database: "auth_dev",
   show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+  pool_size: 10,
+  log_level: :debug
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
