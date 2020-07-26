@@ -2,10 +2,19 @@ defmodule AuthWeb.PageLive do
   @moduledoc false
 
   use AuthWeb, :live_view
+  alias Auth.Accounts
 
   @impl true
-  def mount(_params, _session, socket) do
-    {:ok, assign(socket, query: "", results: %{})}
+  def mount(_params, %{"user_token" => token}, socket) do
+    {
+      :ok,
+      assign(
+        socket,
+        query: "",
+        results: %{},
+        current_user: Accounts.get_user_by_session_token(token)
+      )
+    }
   end
 
   @impl true
