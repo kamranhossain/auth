@@ -17,12 +17,6 @@ defmodule AuthWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", AuthWeb do
-    pipe_through :browser
-
-    live "/", PageLive, :index
-  end
-
   # Other scopes may use custom stacks.
   # scope "/api", AuthWeb do
   #   pipe_through :api
@@ -61,6 +55,8 @@ defmodule AuthWeb.Router do
 
   scope "/", AuthWeb do
     pipe_through [:browser, :require_authenticated_user]
+
+    live "/", PageLive, :index
 
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings/update_password", UserSettingsController, :update_password
